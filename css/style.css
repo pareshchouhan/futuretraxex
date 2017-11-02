@@ -1,5 +1,9 @@
 body {
     background-color: #dfdcdc;
+    width: 380px;
+    overflow: auto;
+    margin: auto;
+    font-family: monospace;
 }
 
 div.container {
