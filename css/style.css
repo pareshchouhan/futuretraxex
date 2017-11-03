@@ -12,6 +12,10 @@ div.container {
     text-align : center;
 }
 
+div.content {
+    padding : 5px;
+}
+
 div.header {
     margin-left : auto;
     margin-right : auto;
