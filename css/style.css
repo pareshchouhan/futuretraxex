@@ -17,3 +17,38 @@ div.header {
     margin-right : auto;
     text-align : center;
 }
+
+nav > ul > li {
+    margin : 2px;
+    padding : 5px;
+    border : 2px dashed black;
+    display : inline;
+    font-size: 1.3em;
+}
+
+nav > ul > li > a:visited {
+    color : blueviolet;
+}
+
+nav > ul > li:hover {
+    background-color: rgb(47, 179, 255);
+}
+
+nav > ul > li.active {
+    background-color: rgba(47, 182, 255, 0.384);
+}
+
+
+nav > ul {
+    
+    list-style-type:  none;
+}
+
+header > nav { 
+    text-align : center;
+}
+
+footer {
+    text-align : center;
+}
+
