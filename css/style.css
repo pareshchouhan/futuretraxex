@@ -45,8 +45,9 @@ nav > ul > li.active {
 
 
 nav > ul {
-    
     list-style-type:  none;
+    -webkit-margin-before: 0px;
+    -webkit-padding-start: 0px;
 }
 
 header > nav { 
