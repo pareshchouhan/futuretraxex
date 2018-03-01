@@ -4,6 +4,7 @@ body {
     overflow: auto;
     margin: auto;
     font-family: monospace;
+    margin-bottom: 50px;
 }
 
 div.container {
@@ -55,6 +56,12 @@ header > nav {
 
 footer {
     text-align : center;
+    position: fixed;
+    height: 50px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
 }
 u.dotted {
   border-bottom: 1px dashed #999;
