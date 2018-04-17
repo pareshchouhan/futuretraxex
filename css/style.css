@@ -75,3 +75,9 @@ table.music-list {
 table.music-list > tbody > tr > td:last-child {
     text-align: center;
 }
+
+.sketch-list a > img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
