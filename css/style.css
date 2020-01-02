@@ -31,6 +31,10 @@ nav > ul > li {
     font-size: 1.3em;
 }
 
+nav > ul > li > a {
+    color : black;
+}
+
 nav > ul > li > a:visited {
     color : black;
 }
