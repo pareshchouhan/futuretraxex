@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" 
+  xmlns:atom="http://www.w3.org/2005/Atom" 
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" 
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Posts on NTAuthority&#39;s Musing</title>
+    <link>http://futuretraxex.com/posts/</link>
+    <description>Recent content in Posts on NTAuthority&#39;s Musing</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>contact@boxfarms.in (NTAuthority)</managingEditor>
+    <webMaster>contact@boxfarms.in (NTAuthority)</webMaster>
+    <copyright>&amp;copy;{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Sun, 01 Nov 2020 12:00:06 +0900</lastBuildDate>
+    
+        <atom:link href="http://futuretraxex.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>Casio-CTK-2500</title>
+        <link>http://futuretraxex.com/posts/casio-ctk-2500/</link>
+        <pubDate>Sun, 01 Nov 2020 12:00:06 +0900</pubDate>
+        <author>contact@boxfarms.in (NTAuthority)</author>
+        
+        <guid>http://futuretraxex.com/posts/casio-ctk-2500/</guid>
+        <description></description>
+        
+        <dc:creator>Hugo Authors</dc:creator>
+        
+        
+        
+        
+          
+            
+              <category>index</category>
+            
+          
+        
+        
+        
+      </item>
+      
+      <item>
+        <title>hellu</title>
+        <link>http://futuretraxex.com/posts/hellu/</link>
+        <pubDate>Mon, 18 Nov 2019 12:00:06 +0900</pubDate>
+        <author>contact@boxfarms.in (NTAuthority)</author>
+        <atom:modified>Mon, 18 Nov 2019 12:00:06 +0900</atom:modified>
+        <guid>http://futuretraxex.com/posts/hellu/</guid>
+        <description>Alice-&amp;gt;Bob: Hello Bob, how are you?Note right of Bob: Bob thinksBob--&amp;gt;Alice: I am good thanks!Title: Here is a titleA-&amp;gt;B: Normal lineB--&amp;gt;C: Dashed lineC-&amp;gt;&amp;gt;D: Open arrowD--&amp;gt;&amp;gt;A: Dashed open arrow</description>
+        
+        <dc:creator>NTAuthority</dc:creator>
+        <media:content url="http://futuretraxex.comimages/feature2/transfer.png" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+          
+            
+          
+        
+        
+          
+            
+              <category>introduction</category>
+            
+          
+        
+        
+          
+            
+          
+        
+      </item>
+      
+
+    
+  </channel>
+</rss>
