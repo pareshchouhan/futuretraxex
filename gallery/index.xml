@@ -23,13 +23,31 @@
 
       
       <item>
+        <title>me</title>
+        <link>http://futuretraxex.com/gallery/me/</link>
+        <pubDate>Thu, 31 Oct 2019 10:20:16 +0900</pubDate>
+        <author>contact@boxfarms.in (NTAuthority)</author>
+        <atom:modified>Thu, 31 Oct 2019 10:20:16 +0900</atom:modified>
+        <guid>http://futuretraxex.com/gallery/me/</guid>
+        <description>Me. &amp;lt;3</description>
+        
+        <dc:creator>NTAuthority</dc:creator>
+        <media:content url="http://futuretraxex.comimages/feature2/gallery.png" medium="image"><media:title type="html">featured image</media:title></media:content>
+        
+        
+        
+        
+        
+      </item>
+      
+      <item>
         <title>me.Love.Life</title>
         <link>http://futuretraxex.com/gallery/me.love.life/</link>
         <pubDate>Thu, 31 Oct 2019 10:20:16 +0900</pubDate>
         <author>contact@boxfarms.in (NTAuthority)</author>
         <atom:modified>Thu, 31 Oct 2019 10:20:16 +0900</atom:modified>
         <guid>http://futuretraxex.com/gallery/me.love.life/</guid>
-        <description>Sample images from Pixabay</description>
+        <description>People I love and places I&amp;rsquo;ve been to. :)</description>
         
         <dc:creator>NTAuthority</dc:creator>
         <media:content url="http://futuretraxex.comimages/feature2/gallery.png" medium="image"><media:title type="html">featured image</media:title></media:content>
@@ -47,7 +65,7 @@
         <author>contact@boxfarms.in (NTAuthority)</author>
         <atom:modified>Thu, 31 Oct 2019 10:20:16 +0900</atom:modified>
         <guid>http://futuretraxex.com/gallery/my.art/</guid>
-        <description>Sample images from Pixabay</description>
+        <description>What I draw.</description>
         
         <dc:creator>NTAuthority</dc:creator>
         <media:content url="http://futuretraxex.comimages/feature2/bam.png" medium="image"><media:title type="html">featured image</media:title></media:content>
