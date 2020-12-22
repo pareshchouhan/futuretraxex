@@ -1694,7 +1694,7 @@
 <div class="single__infos">
   <time class="single__info" title="Written At">📅&nbsp;Nov 1, 2020 </time>
   
-  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;18&nbsp;min read </span>
+  &nbsp;&middot;&nbsp; <span class="single__info" title="Reading Time"> ☕&nbsp;19&nbsp;min read </span>
   
   <span class="single__info">
     
@@ -1711,42 +1711,42 @@
     <article class="single__contents" data-dir="ltr" data-ani="true">
       
       <h1 id="introduction">Introduction</h1>
-<p>Today we will be getting a sense of what the project is about diving into reversing code for connecting to <a href="https://www.casio-intl.com/asia/en/emi/products/ctk2500/">Casio CTK-2500</a> using a 3.5MM jack in an attempt to upload songs to it using a PC. The Casio CTK-2500 herein after reffered to as keybaord or device interchangebly.</p>
+<p>Today I will be getting a sense of what the project is about diving into reversing code for connecting to <a href="https://www.casio-intl.com/asia/en/emi/products/ctk2500/">Casio CTK-2500</a> using a 3.5MM jack in an attempt to upload songs to it using a PC. The Casio CTK-2500 is hereinafter referred to as keyboard or device interchangeably.</p>
 <h1 id="background">Background</h1>
 <p>I had a <a href="https://www.casio-intl.com/asia/en/emi/products/ctk2500/">Casio CTK-2500</a> lying around so I thought I would tinker with it and explore additional features.<br />
-I play keyboard every now and then and was intruiged by a functionality that I had never tried before, Chordana play.</p>
+I play the keyboard now and then and was intrigued by functionality that I had never tried before Chordana play.</p>
 <h4 id="chordana-play">Chordana Play</h4>
-<p>Quick google search resulted in a Chordana app for Android and iOS which allows you to load song into the system, the way to connect the casio to program it was using a 3.5MM audio cable, that piqued my interest.</p>
-<p>Found out that there&rsquo;s no app for PC to load the music using a PC. So I thought why not reverse engineer the app and create a command line utility to load <a href="https://en.wikipedia.org/wiki/MIDI">MIDI files</a> into the keyboard using a PC.</p>
+<p>Quick google search resulted in a Chordana app for Android and iOS which allows you to load a song into the system, the way to connect the Casio to program it was using a 3.5MM audio cable, which piqued my interest.</p>
+<p>Found out that there&rsquo;s no app for a PC to load the music using a PC. So I thought why not reverse engineer the app and create a command-line utility to load <a href="https://en.wikipedia.org/wiki/MIDI">MIDI files</a> into the keyboard using a PC.</p>
 <p>if you read further you will find</p>
 <ul>
-<li>A high level analysis of the app in question</li>
+<li>A high-level analysis of the app in question</li>
 <li>Reverse engineered code from Chordana app and native library that it uses.</li>
-<li>Extracted region of interests in code base that might enable us to write a  utility to utilize 3.5MM jack on my PC to load songs into the keyboard.</li>
+<li>Extracted region of interest in a codebase that might enable us to write a  utility to utilize the 3.5MM jack on my PC to load songs into the keyboard.</li>
 </ul>
 <p><img src="/posts-data/casio-ctk-2500/re-1/control.webp" alt="Casio Control Panel" /></p>
-<h1 id="tools-of-trade">Tools of trade</h1>
-<p>Tools that we will be using to RE the code base and figure out region of interests</p>
+<h1 id="tools-of-the-trade">Tools of the trade</h1>
+<p>Tools that I will be using to RE the code base and figure out a region of interests</p>
 <ul>
 <li>Brain</li>
 <li>IDA Pro (With a decompiler) (To decompile and reverse native binary that&rsquo;s used in the android application)</li>
-<li><a href="http://java-decompiler.github.io/">Online APK Decompiler</a> - This converts APK into jar files that can be feeded into <a href="http://java-decompiler.github.io/">JD-GUI</a></li>
+<li><a href="http://java-decompiler.github.io/">Online APK Decompiler</a> - This converts APK into jar files that can be fed into <a href="http://java-decompiler.github.io/">JD-GUI</a></li>
 <li><a href="http://java-decompiler.github.io/">JD-GUI</a> for viewing decompiled APK files. (JD-GUI requires JRE to function so you have to have it before moving forward.)</li>
 </ul>
-<h1 id="step-1">Step 1</h1>
-<p>Installing Chordana play App on your Android/iOS device and playing around with it.</p>
+<h1 id="high-level-analysis-of-chordana-app">High-Level Analysis of Chordana App</h1>
+<p>Installing Chordana Play App on your Android/iOS device and playing around with it.</p>
 <p><video src="/posts-data/casio-ctk-2500/re-1/app-analysis.webm" controls /></p>
-<p>After using it for a while I came to following conclusions</p>
+<p>After using it for a while I came to the following conclusions</p>
 <ul>
 <li>A predefined song can be loaded into the app or a new midi file can be loaded using the song menu</li>
-<li>To transfer the song to casio first we need to setup something called a keyboard link, To setup keyboard link we need to put our device into <code>APP mode</code>, this can be done on <code>CTK-2500</code> by pressing and holding the APP button. <img src="/posts-data/casio-ctk-2500/re-1/app-button.png" alt="App button" /> and then opening the app and turning on Keyboard Link as you can see in the above video.<br />
-After that you can click on <code>Transfer song</code> and begin to transfer the song to the device using a audio in cable. fascinating.</li>
+<li>To transfer the song to Casio first I need to set up something called a keyboard link, To set up the keyboard link I need to put our device into <code>APP mode</code>, this can be done on <code>CTK-2500</code> by pressing and holding the APP button. <img src="/posts-data/casio-ctk-2500/re-1/app-button.png" alt="App button" /> and then opening the app and turning on Keyboard Link as you can see in the above video.<br />
+After that, you can click on <code>Transfer song</code> and begin to transfer the song to the device using audio in cable. fascinating.</li>
 </ul>
-<h1 id="step-2">Step 2</h1>
-<p>First I would search for the chordana play APK since chordana play is the only app that is capable of putting the device into app mode and load midi files into it.<br />
-Quick google search gets me to <a href="https://apkpure.com/chordana-play/jp.co.casio.chordanaplay">Chordana play APK Pure</a> lands me here, I download the APK, upload it to <a href="http://java-decompiler.github.io/">Online APK Decompiler</a> and get the resulting zip file back.<br />
-After loading the zip file in JD-GUI, We start of by exploring the source code, if you have worked with Android before (or haven&rsquo;t) a folder named <code>sources</code> will surely pique your interest</p>
-<p>lets browse through some code that we found along the way</p>
+<h1 id="getting-the-apk-and-decompiling-it">Getting the APK and decompiling it</h1>
+<p>First I would search for the Chordana Play APK since Chordana Play is the only app that is capable of putting the device into app mode and load midi files into it.<br />
+A quick google search gets me to <a href="https://apkpure.com/chordana-play/jp.co.casio.chordanaplay">Chordana play APK Pure</a> lands me here, I download the APK, upload it to <a href="http://java-decompiler.github.io/">Online APK Decompiler</a> and get the resulting zip file back.<br />
+After loading the zip file in JD-GUI, I start by exploring the source code, if you have worked with Android before (or haven&rsquo;t) a folder named <code>sources</code> will surely pique your interest</p>
+<p>let&rsquo;s browse through some code that I found along the way</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -2068,6 +2068,7 @@ After loading the zip file in JD-GUI, We start of by exploring the source code, 
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="lot-of-native-functions-where-could-these-be-from">Lot of native functions? Where could these be from?</h4>
+<p>I found a native library called <code>libsssg.so</code> that was being used and all of these native functions were defined inside that.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -2216,7 +2217,7 @@ After loading the zip file in JD-GUI, We start of by exploring the source code, 
     <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nUpAppVolume</span><span class="o">();</span>
 </code></pre></td></tr></table>
 </div>
-</div><h1 id="step-3">Step 3</h1>
+</div><h1 id="analysis-of-native-library-used">Analysis of Native library used</h1>
 <p>Analysis of the C++ library used.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2269,7 +2270,7 @@ After loading the zip file in JD-GUI, We start of by exploring the source code, 
 </span><span class="c1"></span>
   <span class="n">v1</span> <span class="o">=</span> <span class="n">iKLRingWptr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// some ring pointer?
 </span><span class="c1"></span>  <span class="n">ucKeyboardLinkRing</span><span class="p">[</span><span class="n">iKLRingWptr</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span> <span class="c1">//ucKeyboardLinkRing looks like some data structure to store data
-</span><span class="c1"></span>  <span class="n">iKLRingWptr</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">%</span> <span class="mi">1024</span><span class="p">;</span> <span class="c1">// oh we loop around, defenitely a ring buffer.
+</span><span class="c1"></span>  <span class="n">iKLRingWptr</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">%</span> <span class="mi">1024</span><span class="p">;</span> <span class="c1">// oh this thing loops around, defenitely a ring buffer.
 </span><span class="c1"></span>  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -2313,7 +2314,7 @@ After loading the zip file in JD-GUI, We start of by exploring the source code, 
 <td class="lntd">
 <pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">Java_jp_co_casio_chordanaplay_lib_Manager_KeyboardLinkManager_nGetDataSize</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="k">return</span> <span class="n">lDataSize</span><span class="p">;</span> <span class="c1">// oh interesting some variable, lDataSize, if we can find xrefs to these, things might get interesting. 
+  <span class="k">return</span> <span class="n">lDataSize</span><span class="p">;</span> <span class="c1">// oh interesting some variable, lDataSize, if I can find xrefs to these, things might get interesting. 
 </span><span class="c1"></span><span class="p">}</span>
 
 </code></pre></td></tr></table>
@@ -2370,7 +2371,7 @@ After loading the zip file in JD-GUI, We start of by exploring the source code, 
   <span class="n">beatB</span> <span class="o">=</span> <span class="n">v7</span><span class="p">;</span>
   <span class="n">beatBD</span> <span class="o">=</span> <span class="n">v8</span><span class="p">;</span>
   <span class="n">proc_PolyLimit</span><span class="p">(</span><span class="n">currentSong</span><span class="p">);</span>
-  <span class="n">lDataSize</span> <span class="o">=</span> <span class="n">get_SongDataForKeaboard_v02</span><span class="p">(</span><span class="n">currentSong</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">lUncompressedDataSize</span><span class="p">);</span> <span class="c1">// &lt;---  See this is interesting, lets dig deeper into This code, I think we are on the right track.
+  <span class="n">lDataSize</span> <span class="o">=</span> <span class="n">get_SongDataForKeaboard_v02</span><span class="p">(</span><span class="n">currentSong</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">lUncompressedDataSize</span><span class="p">);</span> <span class="c1">// &lt;---  See this is interesting, lets dig deeper into This code, I think I am on the right track.
 </span><span class="c1"></span>  <span class="k">return</span> <span class="n">proc_ResumePolyLimit</span><span class="p">(</span><span class="n">currentSong</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
@@ -2587,7 +2588,7 @@ After loading the zip file in JD-GUI, We start of by exploring the source code, 
   <span class="n">v12</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="n">v11</span><span class="p">;</span>
   <span class="n">v12</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">BYTE1</span><span class="p">(</span><span class="n">v11</span><span class="p">);</span>
   <span class="n">v14</span> <span class="o">=</span> <span class="n">v13</span> <span class="o">+</span> <span class="n">v6</span> <span class="o">+</span> <span class="mi">12</span><span class="p">;</span>
-  <span class="n">v15</span> <span class="o">=</span> <span class="n">dtcmp_compress</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ucBuffSrc</span><span class="p">,</span> <span class="n">v14</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ucBuffCmp</span><span class="p">[</span><span class="mi">28</span><span class="p">],</span> <span class="mi">40000</span><span class="p">);</span> <span class="c1">// Interesting some compression function, but we see finally where ucBuffCmp is being populated.
+  <span class="n">v15</span> <span class="o">=</span> <span class="n">dtcmp_compress</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ucBuffSrc</span><span class="p">,</span> <span class="n">v14</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ucBuffCmp</span><span class="p">[</span><span class="mi">28</span><span class="p">],</span> <span class="mi">40000</span><span class="p">);</span> <span class="c1">// Interesting some compression function, but I see finally where ucBuffCmp is being populated.
 </span><span class="c1"></span>  <span class="n">ucBuffCmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">128</span><span class="p">;</span>
   <span class="n">v16</span> <span class="o">=</span> <span class="n">get_Checksum</span><span class="p">(</span><span class="mi">128</span><span class="p">);</span>
   <span class="n">ucBuffCmp</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">v15</span> <span class="o">&amp;</span> <span class="mh">0x7F</span><span class="p">;</span>
@@ -2667,18 +2668,18 @@ After loading the zip file in JD-GUI, We start of by exploring the source code, 
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>So finally we have some clue of where and what ucBuffCmp is used for. I am yet to dig deeper into this, so next articles will dive deeper into what ucBuffCmp is and what is it&rsquo;s function, but I guess it is some kind of compressed buffer that is sent over to keyboard, looking from the code.</p>
-<p>So we now know what <code>ucBuffCmp</code>(atleast something about it) and what <code>nGetDataSize</code> is, lets find out what <code>ucKeyboardLinkRing</code> is used for?</p>
+</div><p>So finally I have some clue of where and what ucBuffCmp is used for. I am yet to dig deeper into this, so the next articles will dive deeper into what ucBuffCmp is and what is the function, but I guess it is some kind of compressed buffer that is sent over to the keyboard, looking from the code.</p>
+<p>So I now know what <code>ucBuffCmp</code>(at least something about it) and what <code>nGetDataSize</code> is, lets find out what <code>ucKeyboardLinkRing</code> is used for?</p>
 <p>Points of interest after going through the code</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"> <span class="n">v20</span> <span class="o">=</span> <span class="n">cSongTitleLCD</span><span class="p">;</span> <span class="c1">// this is in get_SongDataForKeaboard_v02, so if we can manipulate cSongTitleLCD we can change what&#39;s displayed on the LCD that&#39;s good to know.
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"> <span class="n">v20</span> <span class="o">=</span> <span class="n">cSongTitleLCD</span><span class="p">;</span> <span class="c1">// this is in get_SongDataForKeaboard_v02, so if I can manipulate cSongTitleLCD I can change what&#39;s displayed on the LCD that&#39;s good to know.
 </span></code></pre></td></tr></table>
 </div>
-</div><p>By finding xrefs on <code>ucKeyboardLinkRing</code> we stumbled upon this function</p>
+</div><p>By finding xrefs on <code>ucKeyboardLinkRing</code> I stumbled upon this function</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -3059,7 +3060,7 @@ After loading the zip file in JD-GUI, We start of by exploring the source code, 
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="c1">// adn doing xref onto this landed me onto
+<span class="c1">// and doing xref onto this landed me onto
 </span><span class="c1"></span><span class="n">_DWORD</span> <span class="o">*</span><span class="kr">__fastcall</span> <span class="nf">createSgComposition</span><span class="p">(</span><span class="kt">int</span> <span class="n">a1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a2</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="kt">int</span> <span class="n">v2</span><span class="p">;</span> <span class="c1">// r5@1
@@ -3154,14 +3155,14 @@ After loading the zip file in JD-GUI, We start of by exploring the source code, 
   <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="c1">// Looks like some sound device intialization routine.
+<span class="c1">// Looks like some sound device initialization routine.
 </span><span class="c1"></span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Solutions to creating a library.</p>
 <ul>
 <li>Reverse engineer whole code of <code>libsssg.so</code> and rewrite the required parts in C++</li>
-<li>Use a ARM device(Phone, raspberry pi) to use the library as is. (Still will require documenting most of the functions. easier than rewriting.)</li>
+<li>Use an ARM device(Phone, raspberry pi) to use the library as-is. (Still will require documenting most of the functions. easier than rewriting.)</li>
 </ul>
 
     </article>

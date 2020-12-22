@@ -29,7 +29,7 @@
         <author>contact@boxfarms.in (NTAuthority)</author>
         <atom:modified>Sun, 01 Nov 2020 12:00:06 +0900</atom:modified>
         <guid>http://futuretraxex.com/posts/casio-ctk-2500/re-1/</guid>
-        <description>Introduction Today we will be getting a sense of what the project is about diving into reversing code for connecting to Casio CTK-2500 using a 3.5MM jack in an attempt to upload songs to it using a PC. The Casio CTK-2500 herein after reffered to as keybaord or device interchangebly.
+        <description>Introduction Today I will be getting a sense of what the project is about diving into reversing code for connecting to Casio CTK-2500 using a 3.5MM jack in an attempt to upload songs to it using a PC. The Casio CTK-2500 is hereinafter referred to as keyboard or device interchangeably.
 Background I had a Casio CTK-2500 lying around so I thought I would tinker with it and explore additional features.</description>
         
         <dc:creator>NTAuthority</dc:creator>
